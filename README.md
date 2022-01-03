@@ -1,6 +1,6 @@
 # THUMB Ultimate Mac Booter
 
-## 1. LICENSE
+## 1. License
 
     Copyright (c) 2010 Florian Foinant-Willig Tous droits reserves
 
@@ -18,12 +18,12 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-## 2. WHAT IS IT
+## 2. What is it
 
 The THUMB Ultimate Mac Booter is a startup script for Open-Firmware.
 It automaticaly detect OSX and *NIX installation on internal and external (USB and Firewire) drives and let you choice the OS to boot.
 
-## 3. HOW TO USE / INSTALL
+## 3. How to use / install
 
   * First, unzip the tar.gz file in a working directory.
   * "cd" to it and run "./install.sh". You must know the disk partitionning of your system to give the good values.
@@ -42,7 +42,7 @@ When the install process ask you for replace the nvram boot-device, press N or e
 
 THUMB wil now scan your drives at each start, enjoy !
 
-## 4. CONFIGURATION OPTIONS
+## 4. Configuration options
 
 The options can be set in the (install-path)/config.fth file.
 Available options are:
@@ -62,18 +62,18 @@ Available options are:
 Available colors are :
     *BLACK*, *NAVY*, *GREEN*, *TAEL*, *MARRON*, *PURPLE*, *OLIVE*, *SILVER*, *GRAY*, *BLUE*, *LIME*, *AQUA*, *RED*, *FUSHIA*, *YELLOW*, *WHITE* and any color index from 0 to 255.
 
-## 5. KNOWN BUGS
+## 5. Known bugs
 
     Please use github issue
 
-## 6. TODO
+## 6. Todo
 
   * USB hubs have to be supported.
   * Many tests must be done as :
       * Drive acces in a FireWire string
       * Other arch testing (currently it's only tested in an Apple Cube G4)
 
-## ANNEX : WHERE CAN I FIND MORE INFORMATION ABOUT OPEN-FIRMWARE SCRIPTING
+## Annex : Where you can find more information about OpenFirmware scripting
 
 About Open-Firmware/ :
   * http://www.openfirmware.org/1275/mejohnson/

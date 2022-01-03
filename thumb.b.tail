@@ -1,0 +1,138 @@
+" ;     \ End of the INCLUDE_PATH definition
+
+\ \\\\ \
+\ SGML : translation of unauthorized chars
+: not-equal? &lt;&gt; ;
+: greater-than? &gt; ;
+: lesser-than? &lt; ;
+: greater-or-equal? &gt;= ;
+
+
+\ \\\\\\\\ \
+\ Files IO : Basic files and strings function
+
+: read-file ( sfile -- adr len | false )
+    2dup ['] open-dev catch drop dup 0= if
+        -rot cr ." WARNINGG : [Read-File] Unable to find " type cr
+    else
+        -rot 2drop
+        h# 4000 ['] alloc-mem catch drop dup 0= if
+            ."  WARNINGG : [Read-File] Memory allocation failed" cr
+        else
+            swap 2dup
+            h# 4000 swap " read" rot $call-method
+            swap
+        then
+        close-dev
+    then
+;
+: write-file ( adr len sfile -- success? )
+    2dup ['] open-dev catch drop dup 0= if
+        -rot cr ." WARNINGG : [Write-File] Unable to find " type cr
+    else
+        -rot 2drop
+        dup pad !
+        " write" rot $call-method
+        greater-or-equal?
+        pad @ close-dev
+    then
+;
+: global-include ( sfile -- )
+    \ evaluate the content of a Forth file
+    2dup read-file ?dup if
+        2dup evaluate free-mem 2drop
+    else
+        cr ." WARNING : [Include] Unable to read " type cr
+   then
+;
+: cat ( s1 s2 -- s21) \ concatenate 2 strings
+    2dup
+    pad swap move
+    dup 3 pick +
+    rot drop
+    2swap
+    3 pick pad +
+    swap move
+    nip
+    dup alloc-mem
+    swap 2dup pad
+    -rot move
+;
+
+: include ( sfile -- )
+    INCLUDE_PATH cat global-include
+;
+
+
+\ \\\\\\\\ \
+\ INCLUDES : order carefuly !
+
+" init.fth"     include
+" config.fth"   include
+" extra.fth"    include
+" text.fth"     include
+" screen.fth"   include
+" boot.fth"     include
+" gui.fth"      include
+
+\ \\\\\\\\\\\\\ \
+\ Load the prog
+main
+
+\ \\\\\\ \
+\ Finish
+ending
+
+</BOOT-SCRIPT>
+<OS-BADGE-ICONS>
+1010
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+0000FFFFFFFFFFFFFFFFFFFFFFF00000
+0000FFFFFFFFFFFFFFFFFFFFFFF00000
+0000000000000000FF00000000000000
+0000000000000000FF00000000000000
+0000000000000000FF00000000000000
+0000000000000000FF00000000000000
+0000000000000000FF00000000000000
+0000000000000000FF00000000000000
+0000000000000000FF00000000000000
+0000000000000000FF00000000000000
+0000000000000000FF00000000000000
+0000000000000000FF00000000000000
+0000000000000000FF00000000000000
+0000F00000000000FF00000000F00000
+0000F00000000000FF00000000F00000
+0000F00000000000FF00000000F00000
+0000F00000000000FF00000000F00000
+0000F00000000000FF00000000F00000
+0000F00000000000FF00000000F00000
+0000F00000000000FF00000000F00000
+0000F00000000000FF00000000F00000
+0000F00000000000FF00000000F00000
+0000F00000000000FF00000000F00000
+0000F00000000000FF00000000F00000
+0000FFFFFFFFFFFFFFFFFFFFFFF00000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+</OS-BADGE-ICONS>
+</CHRP-BOOT>
